@@ -2,13 +2,7 @@
 
 **who dat girl? izna. your cue.**
 
-An Unofficial Interactive Concert Stage Design Studio
-
-> 非官方粉絲概念作品，與 IZNA 及其經紀／管理公司無隸屬、合作或背書關係。所有舞台結構、比例及效果皆為創意示意。
-
-**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)** · [GitHub 原始碼](https://github.com/Ava0309/izna-stage-lab)
-
-部署來源：GitHub Pages 提供的實際網址；發布驗證結果見下方「部署驗收」。
+**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)**
 
 ## 專案概述
 
@@ -132,25 +126,6 @@ izna-stage-lab/
 JavaScript `node --check` 通過；前次擷取的瀏覽器主控台未見 error／warn。**24 項 VM 測試通過**，涵蓋初始化、資料恢復／清洗、歌曲隔離、Cue 邊界、升降過渡、單一動畫迴圈、Compare 不改資料、YouTube 格式驗證／事件競態／原生暫停 Seek／錯誤備援／播放要求逾時／舊播放器回呼與離線處理。
 
 
-## 本次部署驗收
-
-日期：2026-10-19；以下為本次在實際 GitHub Pages 網站新增執行的檢查，與上述前次 QA 分開記錄。
-
-| 檢查 | 實際結果 |
-| --- | --- |
-| Pages 建置 | GitHub API 回報 `built`，main／根目錄，無建置錯誤。 |
-| 公開可存取 | 不帶登入憑證的 HTTP 請求取得 200；公開 HTML 的 SHA-256 與本機 index.html 相同。 |
-| 桌面載入 | 真實瀏覽器載入，CSS 正常，兩個 SVG 視圖可見，1280px 文件無橫向溢出。 |
-| 舞台與設備 | Flat／Runway／T 在兩個視圖產生不同輪廓；升降台左側、空中裝置右側，啟動／停用後控制與預覽更新。 |
-| Demo | 從零開始，時鐘前進至約 21 秒；按暫停後顯示 Demo 播放，已套用粉紅色等 Cue。 |
-| Cue | 跳至 15 秒；新增 20 秒藍色 Cue 並跳轉確認變藍；編輯成 22 秒後排序、顯示與跳轉正確。 |
-| Compare | Basic 顯示 Flat，返回 My Stage 保留 T 字型及設備位置／啟動狀態。 |
-| LocalStorage | 重新整理後顯示已恢復，T 字型、左側升降台及新增的 22 秒 Cue 存在。 |
-| 窄視窗 | 375×812 視窗，文件寬度 375px；俯視／正面頁籤可切換，無橫向溢出。 |
-| JavaScript 語法 | 本次重新抽出 inline script，執行 node --check 通過。 |
-| 主控台 | 本次擷取的 error／warn 記錄為空。 |
-
-本次不修改應用程式程式碼。YouTube 真實播放與 24 項 VM 回歸測試沿用前次測試報告，本次未在 Pages 重測 YouTube 播放；也未測實體手機或所有網路故障。
 
 ## 本機開啟與重新部署
 
