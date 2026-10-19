@@ -6,7 +6,7 @@ An Unofficial Interactive Concert Stage Design Studio
 
 > 非官方粉絲概念作品，與 IZNA 及其經紀／管理公司無隸屬、合作或背書關係。所有舞台結構、比例及效果皆為創意示意。
 
-**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)** · [GitHub 原始碼](https://github.com/Ava0309/izna-stage-lab) · [作業提交文字](SUBMISSION.md)
+**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)** · [GitHub 原始碼](https://github.com/Ava0309/izna-stage-lab)
 
 部署來源：GitHub Pages 提供的實際網址；發布驗證結果見下方「部署驗收」。
 
@@ -57,22 +57,6 @@ IZNA Stage Lab 是給粉絲與舞台創意愛好者使用的互動演唱會概�
 
 頁首「怎麼玩？」與頁尾「完整操作指南」另提供六章操作說明。
 
-## 真實介面截圖
-
-以下圖片擷取自實際執行的公開網站，並非設計稿；截圖中的舞台配置為操作示例。
-
-### 桌面總覽
-![桌面控制台：俯視圖與正面預覽](screenshots/desktop-overview.png)
-
-### 舞台重新設計
-![T 字舞台與設備、燈光效果](screenshots/stage-redesign.png)
-
-### Cue 時間軸
-![歌單、場景、播放控制及 Cue 編排](screenshots/cue-timeline.png)
-
-### 手機寬度
-![375px 窄視窗中的舞台介面](screenshots/mobile-view.png)
-
 ## 技術架構
 
 | 技術 | 用途 |
@@ -86,18 +70,13 @@ IZNA Stage Lab 是給粉絲與舞台創意愛好者使用的互動演唱會概�
 | LocalStorage | 具版本與異常資料防護的瀏覽器本地儲存。 |
 | GitHub Pages | 從 main 根目錄發布靜態網站。 |
 
-**全部應用程式 HTML、CSS、JavaScript、SVG 均位於根目錄 `index.html`。**沒有框架、npm、建置流程、後端或 API key；README、提交文件與截圖僅作說明，網站執行不依賴它們。YouTube 載入失敗時，核心編輯與 Demo 仍可操作。
+**全部應用程式 HTML、CSS、JavaScript、SVG 均位於根目錄 `index.html`。**沒有框架、npm、建置流程、後端或 API key；README 僅作說明，網站執行不依賴它。YouTube 載入失敗時，核心編輯與 Demo 仍可操作。
 
 ```text
 izna-stage-lab/
+├── .gitignore
 ├── index.html
-├── README.md
-├── SUBMISSION.md
-└── screenshots/
-    ├── desktop-overview.png
-    ├── stage-redesign.png
-    ├── cue-timeline.png
-    └── mobile-view.png
+└── README.md
 ```
 
 ## Vibe Coding 開發過程
@@ -170,7 +149,6 @@ JavaScript `node --check` 通過；前次擷取的瀏覽器主控台未見 error
 | 窄視窗 | 375×812 視窗，文件寬度 375px；俯視／正面頁籤可切換，無橫向溢出。 |
 | JavaScript 語法 | 本次重新抽出 inline script，執行 node --check 通過。 |
 | 主控台 | 本次擷取的 error／warn 記錄為空。 |
-| 截圖 | 四張 PNG 由公開網站實際擷取並逐張檢視；文件引用已檢查。 |
 
 本次不修改應用程式程式碼。YouTube 真實播放與 24 項 VM 回歸測試沿用前次測試報告，本次未在 Pages 重測 YouTube 播放；也未測實體手機或所有網路故障。
 
