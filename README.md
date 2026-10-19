@@ -2,6 +2,8 @@
 
 **who dat girl? izna. your cue.**
 
+**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)**
+
 ## 專案概述
 
 IZNA Stage Lab 是給粉絲與舞台創意愛好者使用的互動演唱會概念設計工具。從平面舞台開始，使用者可以改變延伸台形狀、放置設備、為不同歌曲安排燈光與特效，再用時間軸編排一場自己的演出。
