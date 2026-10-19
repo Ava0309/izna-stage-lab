@@ -1,18 +1,124 @@
-# IZNA STAGE LAB — who dat girl? / your cue.
+# IZNA Stage Lab
 
-非官方粉絲舞台概念作品。主角是 izna，這次換你喊 Cue。
+**who dat girl? izna. your cue.**
 
-網站本體只有根目錄的 `index.html`：所有應用程式 CSS、JavaScript、SVG 與圖示均內嵌，不需要 npm、build、後端或 API key。YouTube 只在綁定影片後，載入官方可見播放器；核心編輯與無音樂 Demo 不依賴它。
+An Unofficial Interactive Concert Stage Design Studio
 
-## 本次功能 QA 與修正紀錄
+> 非官方粉絲概念作品，與 IZNA 及其經紀／管理公司無隸屬、合作或背書關係。所有舞台結構、比例及效果皆為創意示意。
 
-日期：2026-10-19。保留既有視覺設計、文案、曲庫與所有功能，修正狀態同步、動畫時間、播放器事件與操作障礙。
+**[開啟公開網站](https://ava0309.github.io/izna-stage-lab/)** · [GitHub 原始碼](https://github.com/Ava0309/izna-stage-lab) · [作業提交文字](SUBMISSION.md)
 
-測試方式分為：
+部署來源：GitHub Pages 提供的實際網址；發布驗證結果見下方「部署驗收」。
 
-- **瀏覽器實測**：本機 HTTP 頁面，Codex 內建 Chromium，1280 × 900 及 375 × 812 視窗；實際點擊、鍵盤操作、拖曳、重新整理與 YouTube 播放。
-- **程式測試**：Node VM 搭配 DOM、localStorage、計時器及 YouTube 播放器替身，重現錯誤事件順序及資料異常。這些不是實際網路故障測試。
-- **靜態檢查**：JavaScript 語法、HTML ID 唯一性、單檔依賴及未夾帶測試影片 ID。
+## 專案概述
+
+IZNA Stage Lab 是給粉絲與舞台創意愛好者使用的互動演唱會概念設計工具。從平面舞台開始，使用者可以改變延伸台形狀、放置設備、為不同歌曲安排燈光與特效，再用時間軸編排一場自己的演出。
+
+深色控制台以黑、紫與銀白為主色，左側俯視圖負責配置，右側具透視深度的正面預覽呈現變化。桌面提供並排視圖，窄螢幕以頁籤切換。
+
+## 創作動機
+
+創作者在親自參與 IZNA 演唱會時，觀察到首爾場的延伸舞台與部分海外場地較簡單的舞台配置有所不同；在自己參加的海外演出中，也未見部分升降台與空中演出元素。這是個人的觀演經驗，並非對所有場次的完整調查。
+
+這份觀察帶出一個問題：如果粉絲能重新設計演出空間，會如何讓歌曲與舞台互相呼應？因此，本作品著重探索創意替代方案，而非精準還原真實演出，或提供實際設備施工與操作指引。
+
+## 已實作功能
+
+| 功能 | 使用方式與範圍 |
+| --- | --- |
+| 2D 俯視編輯 | 顯示舞台輪廓、設備標記與左／中／右定位錨點。 |
+| 2.5D 正面預覽 | SVG 即時呈現平台透視、LED、人物剪影與效果。 |
+| 三種舞台結構 | Flat、Straight Runway、T-shaped Stage；全域共用。 |
+| 舞台設備 | 安裝／取消升降台、空中裝置，指定有限位置錨點。 |
+| 燈光與特效 | 紫／藍／粉紅／暖白，恆亮／流動／呼吸，煙霧、紙花、移動光束。 |
+| 曲庫與 Setlist | IZNA、IWALY、SIGN、BEEP、Mamma Mia、METRONOME；加入、刪除、上下排序。 |
+| 每曲 Scene | 每首歌獨立保存起始燈光、模式及 FX。 |
+| Stage Cue | 新增、編輯、移除定時效果；依時間排序，點秒數跳轉。 |
+| Director Mode | 手動即時操作設備與效果，並可一鍵重設 FX。 |
+| YouTube 同步 | 官方可見 IFrame 播放器；貼上 watch／youtu.be 網址或 Video ID，播放時間驅動 Cue。 |
+| 無音樂 Demo | 預設 60 秒，可調整 15–3600 秒；播放、暫停、拖曳與跳轉。 |
+| Before／After | Basic Stage 與 My Stage 切換，保留自己的作品。 |
+| LocalStorage | 自動保存全域舞台、歌單順序、各曲場景／Cue／合法影片 ID。 |
+| 響應式與鍵盤操作 | 窄螢幕視圖頁籤、可觸控按鈕、焦點提示及定位鍵盤操作。 |
+
+## 如何使用
+
+1. **選舞台：**選擇平面、直線延伸或 T 字型；兩個視圖立即更新。
+2. **裝設備：**啟用升降台或空中裝置，以位置選單或俯視圖的 L／C／R 定位。安裝設備後，再於 Director Mode 啟動動作。
+3. **選歌曲：**從曲庫加入歌曲，點選歌單中的曲目；↑／↓ 可排序，移除只刪該曲資料。
+4. **設定起始場景：**選燈光顏色、模式與 FX。每首歌曲各自保存，舞台結構與設備位置則共用。
+5. **編排 Cue：**輸入秒數、效果與狀態，按新增；使用編輯／移除調整。點 Cue 列的秒數或時間軸 ◆ 可預覽該瞬間。
+6. **試播演出：**按「試播舞台 Demo」或「Demo 播放」。預設在 5／10／15 秒依序變色、煙霧、紙花，時鐘持續至 60 秒；可暫停及拖曳進度。Demo 沒有音樂，也不代表歌曲真實曲長。
+7. **連接影片：**在目前歌曲貼上 YouTube watch 網址、youtu.be 網址或 11 字元 Video ID，儲存後選「YouTube 同步」並按播放。格式合法不保證可嵌入；失敗時可開啟 YouTube 或改用 Demo。
+8. **比較作品：**按 Compare 查看 Basic Stage，再按回到 My Stage 繼續；比較不會覆寫作品。
+9. **儲存與重設：**觀察右上角自動儲存狀態。重整可恢復同一瀏覽器／來源的作品；「重設」經確認後清除作品。「重設特效」只關閉目前起始場景的 FX，不刪除 Cue。
+
+**控制優先權：**手動操作會停止 Demo／暫停影片，回到目前歌曲起始場景後修改。播放及 Seek 計算時間軸，不改寫起始場景；切歌停止播放並載入新曲；Compare 暫停播放。
+
+頁首「怎麼玩？」與頁尾「完整操作指南」另提供六章操作說明。
+
+## 真實介面截圖
+
+以下圖片擷取自實際執行的公開網站，並非設計稿；截圖中的舞台配置為操作示例。
+
+### 桌面總覽
+![桌面控制台：俯視圖與正面預覽](screenshots/desktop-overview.png)
+
+### 舞台重新設計
+![T 字舞台與設備、燈光效果](screenshots/stage-redesign.png)
+
+### Cue 時間軸
+![歌單、場景、播放控制及 Cue 編排](screenshots/cue-timeline.png)
+
+### 手機寬度
+![375px 窄視窗中的舞台介面](screenshots/mobile-view.png)
+
+## 技術架構
+
+| 技術 | 用途 |
+| --- | --- |
+| HTML5 | 語意結構、表單、對話框與可存取控制項。 |
+| CSS3 | 深色介面、響應式排版與舞台動態效果。 |
+| Vanilla JavaScript | 單一 state、事件、渲染、時間軸計算與資料驗證。 |
+| Inline SVG | 共用舞台幾何映射到俯視與透視正面，繪製設備及燈光。 |
+| requestAnimationFrame／Web Animations | 使用播放時間同步動畫；手動模式可自由播放效果。 |
+| YouTube IFrame Player API | 官方可見播放器與時間／狀態事件；不下載或抽離音訊。 |
+| LocalStorage | 具版本與異常資料防護的瀏覽器本地儲存。 |
+| GitHub Pages | 從 main 根目錄發布靜態網站。 |
+
+**全部應用程式 HTML、CSS、JavaScript、SVG 均位於根目錄 `index.html`。**沒有框架、npm、建置流程、後端或 API key；README、提交文件與截圖僅作說明，網站執行不依賴它們。YouTube 載入失敗時，核心編輯與 Demo 仍可操作。
+
+```text
+izna-stage-lab/
+├── index.html
+├── README.md
+├── SUBMISSION.md
+└── screenshots/
+    ├── desktop-overview.png
+    ├── stage-redesign.png
+    ├── cue-timeline.png
+    └── mobile-view.png
+```
+
+## Vibe Coding 開發過程
+
+### Phase 1 — Ideation
+
+以使用者提出的觀演經驗為起點，透過 ChatGPT／Codex 對話明確化「讓粉絲重新構想舞台」的目的。本紀錄依本專案實際需求與修正對話整理，不額外杜撰未保存的討論。
+
+### Phase 2 — Specification
+
+將想法轉成可驗收規格：單檔、雙視圖同步、三種結構、設備定位、每曲獨立場景、Cue、YouTube／Demo、Compare、自動儲存與手機支援；並要求失敗狀態有可用備援。
+
+### Phase 3 — Implementation
+
+使用 Codex 實作單一 HTML 控制台，先完成舞台、設備、歌曲資料與儲存，再整合時間軸及播放器。依回饋改為「who dat girl? izna. your cue.」，新增詳細操作指南，保留非官方標示。
+
+### Phase 4 — Testing and refinement
+
+使用者要求「完整功能測試與修正，不要重新設計或刪除現有功能」，並明確要求不得把未執行的測試列為通過。這促使驗證從按鈕是否可按，進一步檢查暫停、回跳、切歌、比較、重新整理及播放器延遲事件之間的關係。
+
+以下是**前次 Codex QA 報告（2026-10-19）**的紀錄，並非本次發布時重新執行全部測試。前次採用 1280×900 與 375×812 瀏覽器、Node VM 測試替身及靜態檢查；24 項模擬回歸測試不等同 24 項真實網路測試。
 
 ### 實際問題與修改前後對照
 
@@ -29,7 +135,7 @@
 
 ### 十項功能驗收
 
-| 項目 | 本次結果 |
+| 項目 | 前次結果 |
 | --- | --- |
 | 1. 三種舞台 | **瀏覽器實測通過。** Flat、直線延伸、T 字型在兩個視圖各產生三組不同的輪廓。 |
 | 2. 升降台與空中裝置 | **瀏覽器實測通過。** 安裝、取消、三個位置及動作切換正常。俯視 x=165／300／435 對應正面 x=310.2／480／649.8。 |
@@ -44,48 +150,50 @@
 
 另外實測：歌單上下排序、刪除目前歌曲、刪光歌單後控制停用、再次加歌恢復、暖白色／呼吸／流動燈光、Reset FX、重設取消與確認、重設後重新整理。以原生鍵盤輸入小於 15 秒的長度時，會顯示錯誤並恢復原值。
 
-JavaScript `node --check` 通過；本次擷取的瀏覽器主控台未見 error／warn。**24 項 VM 測試通過**，涵蓋初始化、資料恢復／清洗、歌曲隔離、Cue 邊界、升降過渡、單一動畫迴圈、Compare 不改資料、YouTube 格式驗證／事件競態／原生暫停 Seek／錯誤備援／播放要求逾時／舊播放器回呼與離線處理。
+JavaScript `node --check` 通過；前次擷取的瀏覽器主控台未見 error／warn。**24 項 VM 測試通過**，涵蓋初始化、資料恢復／清洗、歌曲隔離、Cue 邊界、升降過渡、單一動畫迴圈、Compare 不改資料、YouTube 格式驗證／事件競態／原生暫停 Seek／錯誤備援／播放要求逾時／舊播放器回呼與離線處理。
 
-## 如何玩
 
-頁首「怎麼玩？」與頁尾「完整操作指南」均可開啟六章指南。
+## 本次部署驗收
 
-1. 選舞台形狀，安裝升降台或空中裝置，指定左／中／右位置。
-2. 從曲庫加入歌曲，選擇目前編輯的那首；設定燈光與特效作為起始場景。
-3. 新增 Cue，指定秒數、效果及設定。每首歌曲各自保存，舞台結構與設備位置則全域共用。
-4. 按 Demo 播放，不需要音樂。拖曳進度條、點 ◆ 或 Cue 列表的秒數，可檢查指定時間的畫面。
-5. 需要音樂時再貼上 YouTube 連結，選 YouTube 同步並主動按播放。
+日期：2026-10-19；以下為本次在實際 GitHub Pages 網站新增執行的檢查，與上述前次 QA 分開記錄。
 
-**控制優先權：**手動控制會停止 Demo／暫停影片，回到目前歌曲的起始場景後修改。播放與 Seek 只計算時間軸，不改寫起始場景。切歌會停止播放並載入新曲資料。Compare 暫停播放且不覆寫作品。
+| 檢查 | 實際結果 |
+| --- | --- |
+| Pages 建置 | GitHub API 回報 `built`，main／根目錄，無建置錯誤。 |
+| 公開可存取 | 不帶登入憑證的 HTTP 請求取得 200；公開 HTML 的 SHA-256 與本機 index.html 相同。 |
+| 桌面載入 | 真實瀏覽器載入，CSS 正常，兩個 SVG 視圖可見，1280px 文件無橫向溢出。 |
+| 舞台與設備 | Flat／Runway／T 在兩個視圖產生不同輪廓；升降台左側、空中裝置右側，啟動／停用後控制與預覽更新。 |
+| Demo | 從零開始，時鐘前進至約 21 秒；按暫停後顯示 Demo 播放，已套用粉紅色等 Cue。 |
+| Cue | 跳至 15 秒；新增 20 秒藍色 Cue 並跳轉確認變藍；編輯成 22 秒後排序、顯示與跳轉正確。 |
+| Compare | Basic 顯示 Flat，返回 My Stage 保留 T 字型及設備位置／啟動狀態。 |
+| LocalStorage | 重新整理後顯示已恢復，T 字型、左側升降台及新增的 22 秒 Cue 存在。 |
+| 窄視窗 | 375×812 視窗，文件寬度 375px；俯視／正面頁籤可切換，無橫向溢出。 |
+| JavaScript 語法 | 本次重新抽出 inline script，執行 node --check 通過。 |
+| 主控台 | 本次擷取的 error／warn 記錄為空。 |
+| 截圖 | 四張 PNG 由公開網站實際擷取並逐張檢視；文件引用已檢查。 |
 
-**重設特效**只關閉目前歌曲起始場景的特效，不刪除 Cue；下次播放，Cue 仍可能重新啟動效果。右上角**重設**則會在確認後清除全部作品並恢復預設。
+本次不修改應用程式程式碼。YouTube 真實播放與 24 項 VM 回歸測試沿用前次測試報告，本次未在 Pages 重測 YouTube 播放；也未測實體手機或所有網路故障。
 
-## 開啟與 GitHub Pages
+## 本機開啟與重新部署
 
-可將 `index.html` 直接作為網頁檔案開啟。測試工具的安全政策封鎖 `file://`，因此直接雙擊開啟的路徑**未實測**；這次完整瀏覽器驗收使用本機 HTTP。YouTube 可能限制檔案來源，使用 HTTPS 網站較適合播放器功能。
+直接開啟 `index.html` 即可使用核心功能；前次工具因政策限制未實測 `file://`。建議使用靜態 HTTP 服務或公開 HTTPS 網址以取得較完整的 YouTube 相容性。例如在專案目錄執行：
 
-發布步驟：
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+```
 
-1. 把 `index.html` 推送到 GitHub repository 的 `main` 根目錄。
-2. **Settings → Pages → Build and deployment → Deploy from a branch**。
-3. 選 **main**、**/ (root)**，按 **Save**，等候 Pages 顯示網址。
+再開啟 `http://localhost:8765/`。Python 僅是選用的預覽工具，不是網站依賴。
 
-[GitHub 官方發布說明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [YouTube IFrame API 官方文件](https://developers.google.com/youtube/iframe_api_reference)
+GitHub Pages 設定為 **Settings → Pages → Deploy from a branch → main → / (root)**。提交並推送 main 後，等待 Pages 建置成功，再開啟公開網址驗證；不能只以 push 成功判定網站已上線。
 
-## 限制與未測範圍
+[GitHub 官方部署說明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [YouTube IFrame API 官方文件](https://developers.google.com/youtube/iframe_api_reference)
 
-- 未測實體 iOS／Android、Safari／Firefox，或所有瀏覽器版本。
-- 未逐一實測影片區域、年齡、版權限制或每種實際斷網情境；相關事件處理有程式測試，不能等同所有外部情況已驗證。
-- Demo 沒有音樂，不代表歌曲真實曲長。影片格式合法不代表存在或可嵌入。網頁沒有下載或抽離音訊，也沒有預綁官方影片 ID。
-- localStorage 只屬於目前瀏覽器與來源；清除資料、無痕限制或拒絕儲存可能影響恢復。不同分頁同時編輯，以最後儲存者為準。
-- 背景分頁可能被瀏覽器節流，回到前景會重算對應時間的 Cue；未測背景播放精確度。
-- 舞台比例與空中人物為概念示意，非工程模擬。支援減少動態效果的系統偏好。
+## 限制
 
-## Vibe Coding 修改歷程
-
-1. 建立單檔控制台、共享舞台幾何、俯視／正面同步與設備定位。
-2. 加入獨立歌曲場景、歌單排序、Compare、自動儲存及資料防護。
-3. 加入 Cue、Demo 時鐘及官方可見 YouTube 播放器。
-4. 完成初版桌面與窄視窗測試，補上空狀態、錯誤回饋及重設確認。
-5. 依使用者回饋改為「who dat girl? / izna. your cue.」，移除指定頁尾段落，新增六章操作指南。
-6. 本次進行完整功能 QA：重現並修正排序編號、動畫時間同步、Compare 控制顯示、手機點擊範圍與焦點、YouTube 非同步事件及暫停 Seek、解除綁定錯誤標記，以及 60 秒指南一致性。保留原設計與功能，完成上述實測及 24 項程式回歸測試。
+- 舞台比例、設備與空中人物為概念示意，非工程模擬、真實演出還原或危險設備操作教學。
+- YouTube 依網路、瀏覽器政策及影片嵌入權限而定；不保證所有地區、年齡限制或版權受限影片可播。
+- Demo 無音樂，曲目名稱僅供選擇，不虛構精確曲長，也未預綁官方影片。
+- LocalStorage 屬目前瀏覽器與來源，不是雲端帳號同步；localhost 與 GitHub Pages 不共用作品。清除資料、無痕政策或拒絕儲存會影響恢復，多分頁以最後儲存者為準。
+- 前次與本次窄視窗測試均不能代替實體手機觸控驗證；未涵蓋全部 Safari／Firefox／iOS／Android 版本。
+- 背景分頁可能受瀏覽器節流；未驗證背景播放的精確度。
+- 本作品為非官方粉絲專案，與藝人及管理公司無關；不使用來源不明的官方照片、音檔或社群抓圖。
